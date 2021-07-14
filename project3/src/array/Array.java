@@ -29,28 +29,39 @@ public class Array<E> {
     }
 
     public void addLast(E e){
-        if (size==getCapacity()){
-            throw new IllegalArgumentException("AddLast failed.Array is full");
-        }
-        data[size] = e;
-        size++;
+
+        add(size,e);
+        System.out.println(size);
+        System.out.println(data.length);
     }
 
     public void addFirst(E e){
         add(0,e);
+        System.out.println(size);
     }
 
 
     public void add(int index,E e){
-        if (size==data.length){
-            throw new IllegalArgumentException("AddLast failed.Array is full");}
         if (index<0|| index>size){
             throw new IllegalArgumentException("Add failed. Require index >= 0");}
-        for (int i = size; i >= index ; i--) {
-            data[i + 1] = data[i];
-            data[index] = e;
-            size++;
+        if (size==data.length){
+            resize(2*data.length);
+            System.out.println("dddf");
+            }
+        for (int i = size-1; i >= index ; i--) {
+            data[i+1] = data[i];
         }
+        data[index] = e;
+        size++;
+    }
+
+    private void resize(int i) {
+        E[] newData = (E[]) new Object[i];
+        for (int j = 0; j < size; j++) {
+            newData[j] = data[j];
+        }
+        data = newData;
+        
     }
 
     @Override
@@ -69,12 +80,21 @@ public class Array<E> {
         return res.toString();
     }
 
-    E get(int index){
+    public E get(int index){
         if (index < 0 || index>= size){
             throw new IllegalArgumentException("Get failed.Index is illegal.");
         }
         return data[index];
     }
+
+    public E getLast(){
+        return get(size-1);
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
 
     void set(int index, E e){
         if (index < 0 || index>= size){
@@ -101,7 +121,7 @@ public class Array<E> {
         }
         return -1;
     }
-    public void remove(int index){
+    public E remove(int index){
         if (index < 0 || index>= size){
             throw new IllegalArgumentException("Get failed.Index is illegal.");
         }
@@ -109,14 +129,19 @@ public class Array<E> {
             data[i] = data[i+1];
         }
         size--;
+        if(size == data.length/2){
+            resize(data.length/2);
+
+        }
+        return data[index];
+
     }
-    public String removeFirst(){
-        remove(0);
-        return "删除成功~~~";
+    public E removeFirst(){
+        return remove(0);
     }
-    public String removeLast(){
-        remove(size-1);
-        return "删除成功~~~";
+    public E removeLast(){
+        return remove(size-1);
+
     }
 
     public String  removeElement(E e){
