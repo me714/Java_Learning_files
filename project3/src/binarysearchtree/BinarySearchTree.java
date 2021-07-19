@@ -47,7 +47,6 @@ public class BinarySearchTree<E extends Comparable<E>>{
             size++;
             return;
         }
-        返回插入新节点后二分搜索树的根
 */
         if (node == null){
             size ++;
@@ -55,26 +54,11 @@ public class BinarySearchTree<E extends Comparable<E>>{
         }
         if (e.compareTo(node.e) < 0){
             node.left = add(node.left, e);
-        }else if(e.compareTo(node.e) > 0){
+        }else {
             node.right = add(node.right, e);
         }
 
         return node;
     }
-    public boolean contains(E e){
-        return contains(root, e);
 
-    }
-    private boolean contains(Node node, E e){
-        if (node == null){
-            return false;
-        }
-        if (e.compareTo(node.e) == 0){
-            return true;
-        }else if (e.compareTo(node.e) < 0){
-            return contains(node.left, e);
-        }else {
-            return contains(node.right, e);
-        }
-    }
 }
