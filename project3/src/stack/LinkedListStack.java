@@ -24,6 +24,7 @@ public class LinkedListStack<E> implements Stack<E>{
         list.addFirst(e);
     }
 
+
     @Override
     public E pop() {
         return list.removeFirst();

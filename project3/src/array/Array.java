@@ -31,8 +31,8 @@ public class Array<E> {
     public void addLast(E e){
 
         add(size,e);
-        System.out.println(size);
-        System.out.println(data.length);
+//        System.out.println(size);
+//        System.out.println(data.length);
     }
 
     public void addFirst(E e){
