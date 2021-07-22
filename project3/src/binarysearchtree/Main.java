@@ -16,5 +16,7 @@ public class Main {
 
         bts.postOrder();
         System.out.println();
+        bts.levelOrder();
+        System.out.println();
     }
 }

@@ -1,5 +1,9 @@
 package binarysearchtree;
 
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree<E extends Comparable<E>>{
     private class Node{
         public E e;
@@ -115,4 +119,34 @@ public class BinarySearchTree<E extends Comparable<E>>{
         postOrder(node.right);
         System.out.println(node.e);
     }
+
+//层序遍历
+    public void levelOrder(){
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()){
+            Node cur = q.remove();
+            System.out.println(cur.e);
+            if (cur.left != null){
+                q.add(cur.left);
+            }
+            if (cur.right != null){
+                q.add(cur.right);
+            }
+        }
+    }
+
+//    public E minimum(){
+//        if (size == 0){
+//            throw new IllegalArgumentException("二分搜索树是空的");
+//        }
+//        minimum(root);
+//    }
+//
+//    private Node minimum(Node node){
+//        if (node.left == null){
+//
+//        }
+//    }
+
 }
